@@ -7,15 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B4729DF29CBF61A009CE455 /* ApartmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4729DE29CBF61A009CE455 /* ApartmentCollectionViewCell.swift */; };
+		3B4729E129CBF64C009CE455 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4729E029CBF64C009CE455 /* MainViewController.swift */; };
+		3B4729E329CC0157009CE455 /* ApartmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4729E229CC0157009CE455 /* ApartmentTableViewCell.swift */; };
+		3B51C3C929CCDB4B004CEEE7 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B51C3C829CCDB4B004CEEE7 /* ComposeViewController.swift */; };
+		3B51C3CB29CCDB99004CEEE7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B51C3CA29CCDB99004CEEE7 /* User.swift */; };
+		3B51C3CD29CCE285004CEEE7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B51C3CC29CCE285004CEEE7 /* LogInViewController.swift */; };
+		3B51C3CF29CCE2B8004CEEE7 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B51C3CE29CCE2B8004CEEE7 /* SignupViewController.swift */; };
+		3B51C3D229CD3ED8004CEEE7 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 3B51C3D129CD3ED8004CEEE7 /* AlamofireImage */; };
 		3B7458B729CA921400E80390 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7458B629CA921400E80390 /* AppDelegate.swift */; };
 		3B7458B929CA921400E80390 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7458B829CA921400E80390 /* SceneDelegate.swift */; };
 		3B7458BB29CA921400E80390 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7458BA29CA921400E80390 /* ViewController.swift */; };
 		3B7458BE29CA921400E80390 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7458BC29CA921400E80390 /* Main.storyboard */; };
 		3B7458C029CA921600E80390 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7458BF29CA921600E80390 /* Assets.xcassets */; };
 		3B7458C329CA921600E80390 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7458C129CA921600E80390 /* LaunchScreen.storyboard */; };
+		3B7458CC29CAA4E600E80390 /* ParseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3B7458CB29CAA4E600E80390 /* ParseSwift */; };
+		3B7458CE29CAA75800E80390 /* ApartmentsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7458CD29CAA75800E80390 /* ApartmentsList.swift */; };
+		3B7458D029CB6BD900E80390 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7458CF29CB6BD900E80390 /* CollectionViewController.swift */; };
+		3B7458D229CB6C0500E80390 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7458D129CB6C0500E80390 /* CollectionViewCell.swift */; };
+		3B7458D629CB75B900E80390 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 3B7458D529CB75B900E80390 /* Nuke */; };
+		3B7458DC29CB8D8F00E80390 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7458DB29CB8D8F00E80390 /* UserCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B4729DE29CBF61A009CE455 /* ApartmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B4729E029CBF64C009CE455 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3B4729E229CC0157009CE455 /* ApartmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentTableViewCell.swift; sourceTree = "<group>"; };
+		3B51C3C829CCDB4B004CEEE7 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		3B51C3CA29CCDB99004CEEE7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3B51C3CC29CCE285004CEEE7 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		3B51C3CE29CCE2B8004CEEE7 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		3B7458B329CA921400E80390 /* HouseBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HouseBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7458B629CA921400E80390 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B7458B829CA921400E80390 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +45,10 @@
 		3B7458BF29CA921600E80390 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B7458C229CA921600E80390 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B7458C429CA921600E80390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B7458CD29CAA75800E80390 /* ApartmentsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentsList.swift; sourceTree = "<group>"; };
+		3B7458CF29CB6BD900E80390 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		3B7458D129CB6C0500E80390 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		3B7458DB29CB8D8F00E80390 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +56,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B7458CC29CAA4E600E80390 /* ParseSwift in Frameworks */,
+				3B7458D629CB75B900E80390 /* Nuke in Frameworks */,
+				3B51C3D229CD3ED8004CEEE7 /* AlamofireImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,9 +85,20 @@
 			isa = PBXGroup;
 			children = (
 				3B7458B629CA921400E80390 /* AppDelegate.swift */,
+				3B51C3C829CCDB4B004CEEE7 /* ComposeViewController.swift */,
+				3B7458CD29CAA75800E80390 /* ApartmentsList.swift */,
 				3B7458B829CA921400E80390 /* SceneDelegate.swift */,
+				3B51C3CE29CCE2B8004CEEE7 /* SignupViewController.swift */,
 				3B7458BA29CA921400E80390 /* ViewController.swift */,
 				3B7458BC29CA921400E80390 /* Main.storyboard */,
+				3B51C3CC29CCE285004CEEE7 /* LogInViewController.swift */,
+				3B4729E229CC0157009CE455 /* ApartmentTableViewCell.swift */,
+				3B51C3CA29CCDB99004CEEE7 /* User.swift */,
+				3B4729E029CBF64C009CE455 /* MainViewController.swift */,
+				3B4729DE29CBF61A009CE455 /* ApartmentCollectionViewCell.swift */,
+				3B7458D129CB6C0500E80390 /* CollectionViewCell.swift */,
+				3B7458DB29CB8D8F00E80390 /* UserCollectionViewCell.swift */,
+				3B7458CF29CB6BD900E80390 /* CollectionViewController.swift */,
 				3B7458BF29CA921600E80390 /* Assets.xcassets */,
 				3B7458C129CA921600E80390 /* LaunchScreen.storyboard */,
 				3B7458C429CA921600E80390 /* Info.plist */,
@@ -83,6 +122,11 @@
 			dependencies = (
 			);
 			name = HouseBook;
+			packageProductDependencies = (
+				3B7458CB29CAA4E600E80390 /* ParseSwift */,
+				3B7458D529CB75B900E80390 /* Nuke */,
+				3B51C3D129CD3ED8004CEEE7 /* AlamofireImage */,
+			);
 			productName = HouseBook;
 			productReference = 3B7458B329CA921400E80390 /* HouseBook.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +155,11 @@
 				Base,
 			);
 			mainGroup = 3B7458AA29CA921400E80390;
+			packageReferences = (
+				3B7458CA29CAA4E600E80390 /* XCRemoteSwiftPackageReference "Parse-Swift" */,
+				3B7458D429CB75B900E80390 /* XCRemoteSwiftPackageReference "Nuke" */,
+				3B51C3D029CD3ED8004CEEE7 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+			);
 			productRefGroup = 3B7458B429CA921400E80390 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -140,7 +189,18 @@
 			files = (
 				3B7458BB29CA921400E80390 /* ViewController.swift in Sources */,
 				3B7458B729CA921400E80390 /* AppDelegate.swift in Sources */,
+				3B7458D229CB6C0500E80390 /* CollectionViewCell.swift in Sources */,
+				3B7458CE29CAA75800E80390 /* ApartmentsList.swift in Sources */,
 				3B7458B929CA921400E80390 /* SceneDelegate.swift in Sources */,
+				3B4729DF29CBF61A009CE455 /* ApartmentCollectionViewCell.swift in Sources */,
+				3B51C3CD29CCE285004CEEE7 /* LogInViewController.swift in Sources */,
+				3B51C3C929CCDB4B004CEEE7 /* ComposeViewController.swift in Sources */,
+				3B51C3CF29CCE2B8004CEEE7 /* SignupViewController.swift in Sources */,
+				3B4729E129CBF64C009CE455 /* MainViewController.swift in Sources */,
+				3B51C3CB29CCDB99004CEEE7 /* User.swift in Sources */,
+				3B7458DC29CB8D8F00E80390 /* UserCollectionViewCell.swift in Sources */,
+				3B4729E329CC0157009CE455 /* ApartmentTableViewCell.swift in Sources */,
+				3B7458D029CB6BD900E80390 /* CollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +418,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3B51C3D029CD3ED8004CEEE7 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		3B7458CA29CAA4E600E80390 /* XCRemoteSwiftPackageReference "Parse-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/parse-community/Parse-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		3B7458D429CB75B900E80390 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3B51C3D129CD3ED8004CEEE7 /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B51C3D029CD3ED8004CEEE7 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
+		3B7458CB29CAA4E600E80390 /* ParseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B7458CA29CAA4E600E80390 /* XCRemoteSwiftPackageReference "Parse-Swift" */;
+			productName = ParseSwift;
+		};
+		3B7458D529CB75B900E80390 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B7458D429CB75B900E80390 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3B7458AB29CA921400E80390 /* Project object */;
 }
