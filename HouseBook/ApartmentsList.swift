@@ -27,4 +27,5 @@ struct ApartmentsList: ParseObject {
     var user:String?
     var userUploadPhoto: [ParseFile]?
     var leaseType: String?
+    var interestedUser: [String] = []
 }

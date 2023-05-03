@@ -31,6 +31,7 @@ class SignupViewController: UIViewController {
     @IBAction func didTapSignup(sender: UIButton){
             
             guard let username = setEmail.text,
+                  let email = verifyEmail.text,
                   let stdId = studentID.text,
                   let password = setPassword.text,
                   !username.isEmpty,
@@ -46,6 +47,7 @@ class SignupViewController: UIViewController {
             
             var newUser = User()
             newUser.username = username
+            newUser.email = email
             newUser.studentID = stdId
             newUser.password = password
             newUser.signup { [weak self] result in
@@ -57,6 +59,10 @@ class SignupViewController: UIViewController {
 
                     // Post a notification that the user has successfully signed up.
                     NotificationCenter.default.post(name: Notification.Name("login"), object: nil)
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let nextVC = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+                    self?.navigationController?.pushViewController(nextVC, animated: true)
+                    self?.navigationItem.hidesBackButton = true 
 
                 case .failure(let error):
                     // Failed sign up

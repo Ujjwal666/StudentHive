@@ -28,6 +28,6 @@ struct User: ParseUser {
     var sessionToken: String?
     
     var profilePhoto: ParseFile?
-    
+    var interestedProperty: [String] = []
   
 }

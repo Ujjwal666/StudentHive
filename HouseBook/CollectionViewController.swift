@@ -29,19 +29,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var phone: UIImageView!
     private var imageDataRequest: DataRequest?
     var apartmentsList: ApartmentsList!
-    let photos = [
-        "https://images1.apartments.com/i2/_V89dQA-MbEHkJKJsx39FprHzLuqSYmyVPt1t45SnUY/116/banner-lane-washington-dc-primary-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/y8QuFVveUqwR1uudO7kjnpQF4dsf_qHB5jipuT8T334/111/banner-lane-washington-dc-building-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/Cq9BOnYrMuMzICxjV8QNVYiaPznq2Z-h3MRjn2ngX0I/111/banner-lane-washington-dc-building-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/_V89dQA-MbEHkJKJsx39FprHzLuqSYmyVPt1t45SnUY/116/banner-lane-washington-dc-primary-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/y8QuFVveUqwR1uudO7kjnpQF4dsf_qHB5jipuT8T334/111/banner-lane-washington-dc-building-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/Cq9BOnYrMuMzICxjV8QNVYiaPznq2Z-h3MRjn2ngX0I/111/banner-lane-washington-dc-building-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/_V89dQA-MbEHkJKJsx39FprHzLuqSYmyVPt1t45SnUY/116/banner-lane-washington-dc-primary-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/y8QuFVveUqwR1uudO7kjnpQF4dsf_qHB5jipuT8T334/111/banner-lane-washington-dc-building-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/Cq9BOnYrMuMzICxjV8QNVYiaPznq2Z-h3MRjn2ngX0I/111/banner-lane-washington-dc-building-photo.jpg?p=1"
-      ]
     
-    let users = ["https://sb.kaleidousercontent.com/67418/1920x1545/c5f15ac173/samuel-raita-ridxdghg7pw-unsplash.jpg", "https://sb.kaleidousercontent.com/67418/1920x1545/c5f15ac173/samuel-raita-ridxdghg7pw-unsplash.jpg", "https://sb.kaleidousercontent.com/67418/1920x1545/c5f15ac173/samuel-raita-ridxdghg7pw-unsplash.jpg", "https://sb.kaleidousercontent.com/67418/1920x1545/c5f15ac173/samuel-raita-ridxdghg7pw-unsplash.jpg","https://sb.kaleidousercontent.com/67418/1920x1545/c5f15ac173/samuel-raita-ridxdghg7pw-unsplash.jpg","https://sb.kaleidousercontent.com/67418/1920x1545/c5f15ac173/samuel-raita-ridxdghg7pw-unsplash.jpg", "https://sb.kaleidousercontent.com/67418/1920x1545/c5f15ac173/samuel-raita-ridxdghg7pw-unsplash.jpg", "https://sb.kaleidousercontent.com/67418/1920x1545/c5f15ac173/samuel-raita-ridxdghg7pw-unsplash.jpg", "https://sb.kaleidousercontent.com/67418/1920x1545/c5f15ac173/samuel-raita-ridxdghg7pw-unsplash.jpg","https://sb.kaleidousercontent.com/67418/1920x1545/c5f15ac173/samuel-raita-ridxdghg7pw-unsplash.jpg"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +49,27 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         lease.layer.masksToBounds = true
         lease.layer.cornerRadius = 5
         
-        userProfile.layer.cornerRadius = 10.0
+        if let currentUser = User.current{
+            let initials = String(apartmentsList.user!.prefix(2)).uppercased()
+            
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: userProfile.frame.width, height: userProfile.frame.height))
+            label.text = initials
+            label.textColor = .white
+            label.backgroundColor = .systemBlue
+            label.textAlignment = .center
+            
+            userProfile.contentMode = .center // or .scaleAspectFit
+            userProfile.addSubview(label)
+            
+            UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0.0)
+            label.layer.render(in: UIGraphicsGetCurrentContext()!)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            userProfile.image = image
+            userProfile.layer.cornerRadius = 10.0
+        }
+        
         phone.layer.cornerRadius = 10.0
         bubble.layer.cornerRadius = 10.0
 
@@ -76,7 +84,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
             }
             return apartmentsList.Photos!.count
         }
-        return users.count
+        return apartmentsList.interestedUser.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -106,12 +114,59 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
             collection.images.layer.cornerRadius = 50.0
             return collection
         }
-        let photo = users[indexPath.row]
+        let initials = String(apartmentsList.interestedUser[indexPath.row].prefix(2)).uppercased()
         let collection = collectionView.dequeueReusableCell(withReuseIdentifier: "userCollectionView", for: indexPath) as! UserCollectionViewCell
-        Nuke.loadImage(with: URL(string: photo)!, into: collection.userProfile)
+        
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: collection.userProfile.frame.width, height: collection.userProfile.frame.height))
+        label.text = initials
+        label.textColor = .white
+        label.backgroundColor = .systemBlue
+        label.textAlignment = .center
+        
+        collection.userProfile.contentMode = .center // or .scaleAspectFit
+        collection.userProfile.addSubview(label)
+        
+        UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0.0)
+        label.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        collection.userProfile.image = image
+        
+//        Nuke.loadImage(with: URL(string: photo)!, into: collection.userProfile)
         collection.userProfile.layer.cornerRadius = collection.userProfile.frame.width/2
 //        collection.userProfile.layer.cornerRadius = 50.0
         return collection
         
     }
+    
+    @IBAction func interestedClicked(_ sender: Any) {
+        if var currentUser = User.current{
+            if apartmentsList.interestedUser.contains(currentUser.username!) {
+                // Display a success message
+                let alert = UIAlertController(title: "❌", message: "User is already interested", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                apartmentsList.interestedUser.append(currentUser.username!)
+                currentUser.interestedProperty.append(apartmentsList.objectId ?? "nil")
+            }
+            print("❌",apartmentsList.objectId,currentUser.objectId)
+            print("❌", currentUser.interestedProperty, currentUser.objectId)
+            do {
+                try currentUser.save()
+                try apartmentsList.save()
+                print("User saved successfully.")
+                print("❌", currentUser.interestedProperty)
+                
+                // Display a success message
+                let alert = UIAlertController(title: "Success", message: "Added to list successfully!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } catch {
+                print("Error saving user: \(error.localizedDescription)")
+            }
+        }
+    }
+    
 }

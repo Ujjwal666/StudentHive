@@ -11,8 +11,9 @@ import CoreLocation
 import Alamofire
 import AlamofireImage
 
-class MainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+class MainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var userPic: UIImageView!
     @IBOutlet weak var apartmentView: UICollectionView!
     
@@ -22,19 +23,6 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var advertView: UIView!
     
     
-    
-    
-    let photos = [
-        "https://images1.apartments.com/i2/_V89dQA-MbEHkJKJsx39FprHzLuqSYmyVPt1t45SnUY/116/banner-lane-washington-dc-primary-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/y8QuFVveUqwR1uudO7kjnpQF4dsf_qHB5jipuT8T334/111/banner-lane-washington-dc-building-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/Cq9BOnYrMuMzICxjV8QNVYiaPznq2Z-h3MRjn2ngX0I/111/banner-lane-washington-dc-building-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/_V89dQA-MbEHkJKJsx39FprHzLuqSYmyVPt1t45SnUY/116/banner-lane-washington-dc-primary-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/y8QuFVveUqwR1uudO7kjnpQF4dsf_qHB5jipuT8T334/111/banner-lane-washington-dc-building-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/Cq9BOnYrMuMzICxjV8QNVYiaPznq2Z-h3MRjn2ngX0I/111/banner-lane-washington-dc-building-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/_V89dQA-MbEHkJKJsx39FprHzLuqSYmyVPt1t45SnUY/116/banner-lane-washington-dc-primary-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/y8QuFVveUqwR1uudO7kjnpQF4dsf_qHB5jipuT8T334/111/banner-lane-washington-dc-building-photo.jpg?p=1",
-        "https://images1.apartments.com/i2/Cq9BOnYrMuMzICxjV8QNVYiaPznq2Z-h3MRjn2ngX0I/111/banner-lane-washington-dc-building-photo.jpg?p=1"
-      ]
     var apartmentsList = [ApartmentsList](){
         didSet {
             // Reload table view data any time the posts variable gets updated.
@@ -52,7 +40,30 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         
         self.navigationItem.hidesBackButton = true
-    
+        
+        if let currentUser = User.current {
+            let username = currentUser.username!
+            let initials = String(username.prefix(2)).uppercased()
+            print("Intial", initials)
+            
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: userPic.frame.width, height: userPic.frame.height))
+            label.text = initials
+            label.textColor = .white
+            label.backgroundColor = .systemBlue
+            label.textAlignment = .center
+            
+            userPic.contentMode = .center // or .scaleAspectFit
+            userPic.addSubview(label)
+            
+            UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0.0)
+            label.layer.render(in: UIGraphicsGetCurrentContext()!)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            userPic.image = image
+        }
+
+        
         apartmentView.delegate = self
         apartmentView.dataSource = self
         apartmentTableView.dataSource = self
@@ -60,6 +71,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         advertView.layer.cornerRadius = 10.0
         userPic.layer.cornerRadius = 10.0
         // Do any additional setup after loading the view.
+        searchBar.delegate = self
         
     }
     
@@ -121,7 +133,6 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("hi", apartmentsList)
         return apartmentsList.count
     }
     
@@ -165,6 +176,30 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
 ////        self.navigationController?.pushViewController(collectionView!, animated: true)
 //        performSegue(withIdentifier: "detailSegue", sender: self)
 //    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let searchQuery = searchBar.text ?? ""
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let searchResultsVC = storyboard.instantiateViewController(withIdentifier: "showSearchResults") as! SearchResultsViewController
+        searchResultsVC.searchQuery = searchQuery
+        searchResultsVC.apartmentsList = apartmentsList
+        let navController = UINavigationController(rootViewController: searchResultsVC)
+        searchResultsVC.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonPressed))
+        navController.modalPresentationStyle = .overCurrentContext
+        present(navController, animated: true) {
+            self.navigationController?.setViewControllers([], animated: false)
+        }
+
+    }
+    @objc func backButtonPressed() {
+        dismiss(animated: true, completion: nil)
+    }
+    @IBAction func dipTapInfo(_ sender: UITapGestureRecognizer) {
+        if let tappedView = sender.view{
+//            let tag = tappedView.tag
+//            print("Tapped image view with tag: \(tag)")
+            performSegue(withIdentifier: "profileSegue", sender: tappedView)
+        }
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailSegue"{
             if let detailView = segue.destination as? CollectionViewController {
@@ -180,11 +215,30 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     detailView.apartmentsList = apartmentsList[indexPath.row]
                 }
             }
+        } else if segue.identifier == "profileSegue"{
+//            if segue.identifier == "profileSegue", let tag = sender as? Int {
+//                let searchResultsVC = segue.destination as! SearchResultsViewController
+//            }
+//no need to implement we fetch new apartment list in profile
+            var userApartmentsList: [ApartmentsList] = []
+            for apartment in self.apartmentsList{
+                if apartment.user == "Ujjwal Adhikari"{
+                    userApartmentsList.append(apartment)
+                }
+            }
+            if let profileView = segue.destination as? ProfileViewController {
+                profileView.apartmentsList = userApartmentsList
+            }
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let nextVC = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController")
+//            navigationController?.pushViewController(nextVC, animated: true)
+            
         }
         
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         apartmentsList.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -225,14 +279,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
         return cell
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+    
 
 }
